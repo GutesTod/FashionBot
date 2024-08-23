@@ -2,6 +2,7 @@ from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message
 from ..keyboards import get_menu_keyboard
+from ..keyboards import get_category_keyboard
 
 main_router = Router()
 
@@ -19,5 +20,5 @@ async def start(msg: Message):
 async def choose_category(msg: Message):
     return msg.answer(
         text="Выберите категорию",
-        
+        reply_markup=(await get_category_keyboard()).as_markup()
     )
