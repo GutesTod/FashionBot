@@ -7,9 +7,17 @@ from src.config import settings
 from src.middleware import LoggerMiddleware
 from src.handlers import main_router
 
+from src.services import APIClient
+
 import logging
 
 bot = Bot(token=settings.TOKEN)
+
+async def on_startup(dp: Dispatcher):
+    dp.api_client = APIClient()
+
+async def on_shutdown(dp: Dispatcher):
+    dp.api_client.close()
 
 async def main():
     logging.basicConfig(
@@ -26,7 +34,7 @@ async def main():
         dp.include_routers(
             main_router
         )
-        await dp.start_polling(bot)
+        await dp.start_polling(bot, on_startup=on_startup, on_shutdown=on_shutdown)
     finally:
         await dp.storage.close()
         await dp.storage.wait_closed()

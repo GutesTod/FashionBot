@@ -10,6 +10,11 @@ class APIClient:
             cls._instance.session = aiohttp.ClientSession()
         return cls._instance
 
+    async def get_locations(self):
+        url = f"{settings.URL_API}/services/enum"
+        async with self._instance.session.get(url) as response:
+            return await response.json()
+    
     async def get_categories(self):
         url = f"{settings.URL_API}/categories/10"
         async with self._instance.session.get(url) as response:

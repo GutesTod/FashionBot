@@ -1,2 +1,3 @@
 from .menu_keyboard import get_menu_keyboard
 from .category_keyboard import get_category_keyboard
+from .location_keyboard import get_location_keyboard
