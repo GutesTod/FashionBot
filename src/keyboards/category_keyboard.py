@@ -1,8 +1,6 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import InlineKeyboardButton
 
-from ..config import settings
-
 from ..services import APIClient
 
 async def get_category_keyboard() -> InlineKeyboardBuilder:

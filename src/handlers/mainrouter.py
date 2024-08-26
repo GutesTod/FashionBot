@@ -35,7 +35,6 @@ async def choose_category(msg: Message, state: FSMContext):
     await state.set_state(ChooseState.category)
 
 @main_router.callback_query(
-    'category' in F.data,
     ChooseState.category
 )
 async def choose_location(callback: CallbackQuery, state: FSMContext):
